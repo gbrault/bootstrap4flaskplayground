@@ -93,6 +93,15 @@ def test_form():
     form = HelloForm()
     return render_template('form.html', form=form, telephone_form=TelephoneForm(), contact_form=ContactForm(), im_form=IMForm(), button_form=ButtonForm(), example_form=ExampleForm())
 
+@app.route('/login', methods=['GET', 'POST'])
+def test_login():
+    if request.method == 'POST':
+        flash( f"Username={request.form['username']}", 'primary' )
+        flash( f"Password={request.form['password']}", 'primary' )
+        if 'remember' in request.form:
+            flash( f"Remember={request.form['remember']}", 'primary' )
+    form = HelloForm()
+    return render_template('login.html', form=form)
 
 @app.route('/nav', methods=['GET', 'POST'])
 def test_nav():
